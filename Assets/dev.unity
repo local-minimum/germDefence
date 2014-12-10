@@ -1496,7 +1496,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   baseRegen: .5
-  elevatedRegenFactor: 2
+  elevatedRegenFactor: 10
   maxValue: 100
 --- !u!114 &1899920308
 MonoBehaviour:
