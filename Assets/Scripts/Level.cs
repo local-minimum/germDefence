@@ -12,6 +12,8 @@ public class Level : MonoBehaviour {
 	public uiMeter immunity;
 	bool _gameOver = false;
 	bool _paused = false;
+	private float pausedTime = 0f;
+	private float lastPauseTime = 0f;
 
 	// Use this for initialization
 	void Start () {
@@ -25,9 +27,23 @@ public class Level : MonoBehaviour {
 		}
 
 		set {
+
+			if (value)
+				lastPauseTime = Time.time;
+			else
+				pausedTime += Time.time - lastPauseTime;
+
 			_paused = value;
 		}
 	}
+
+	public float playTime {
+
+		get {
+			return Time.timeSinceLevelLoad;
+		}
+	}
+
 	// Update is called once per frame
 	void Update () {
 		if (paused)

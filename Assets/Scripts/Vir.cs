@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Vir : MonoBehaviour {
+public class Vir : Enemy {
 
 	public Vector3 dropOffset = Vector3.down;
 
@@ -13,8 +13,9 @@ public class Vir : MonoBehaviour {
 	private bool hurting = false;
 
 
-	void Start () {
-		immunity = GameObject.FindObjectOfType<Level>().immunity;
+	new void Start () {
+		base.Start(); 
+		immunity = levelCoordinator.immunity;
 	}
 
 	// Update is called once per frame

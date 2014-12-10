@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Bact : MonoBehaviour {
+public class Bact : Enemy {
 	
 	public int lives = 3;
 
@@ -39,6 +39,10 @@ public class Bact : MonoBehaviour {
 	private bool kamikazeMode = false;
 	private bool warping = false;
 	private float warpTime = 0f;
+
+	new public void Start() {
+		base.Start();
+	}
 
 	// Use this for initialization
 	public void Prep () {
