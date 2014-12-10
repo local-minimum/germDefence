@@ -50,7 +50,7 @@ public class SurfaceDefence : MonoBehaviour {
 
 	void OnTriggerEnter2D(Collider2D other) {
 		Enemy e = other.GetComponent<Enemy>();
-		Debug.Log(other.tag);
+//		Debug.Log(other.tag);
 		if (e) {
 			fighting.Add(e);
 			StartCoroutine(eatingEnemies(e));

@@ -3,6 +3,8 @@ using System.Collections;
 
 public class Enemy : MonoBehaviour {
 
+	private bool killing = false;
+
 	[SerializeField]
 	public int _lives = 3;
 
@@ -45,8 +47,12 @@ public class Enemy : MonoBehaviour {
 	}
 
 	protected void Death() {
-		if (gameObject)
+		if (killing)
+			return;
+		killing = true;
+		if (gameObject) {
 			Destroy(gameObject);
+		}
 	}
 
 }
