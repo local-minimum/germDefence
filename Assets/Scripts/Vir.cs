@@ -14,6 +14,7 @@ public class Vir : Enemy {
 
 
 	new void Start () {
+		lives = 1;
 		base.Start(); 
 		immunity = levelCoordinator.immunity;
 	}

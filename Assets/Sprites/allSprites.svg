@@ -36,9 +36,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.98994949"
-     inkscape:cx="381.29297"
-     inkscape:cy="915.53097"
+     inkscape:zoom="5.6"
+     inkscape:cx="144.52712"
+     inkscape:cy="848.54815"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -387,5 +387,44 @@
          id="tspan3919"
          x="468.71078"
          y="341.71988">Surface Defense</tspan></text>
+    <path
+       sodipodi:type="arc"
+       style="fill:#0000ff;fill-opacity:1;fill-rule:nonzero;stroke:#e63d52;stroke-opacity:1"
+       id="path3027"
+       sodipodi:cx="48.57143"
+       sodipodi:cy="165.21931"
+       sodipodi:rx="6.4285712"
+       sodipodi:ry="7.8571429"
+       d="m 55.000001,165.21931 a 6.4285712,7.8571429 0 1 1 -12.857142,0 6.4285712,7.8571429 0 1 1 12.857142,0 z"
+       inkscape:export-filename="D:\UserMartin\Documents\Game Projects\viroBacterInvaders\Assets\Sprites\surfDef.png"
+       inkscape:export-xdpi="53.490002"
+       inkscape:export-ydpi="53.490002"
+       transform="matrix(1.4161414,0,0,1.4161414,-17.329319,-60.44664)" />
+    <path
+       sodipodi:type="arc"
+       style="fill:#0000ff;fill-opacity:1;fill-rule:nonzero;stroke:#e63d52;stroke-opacity:1"
+       id="path3029"
+       sodipodi:cx="49.107143"
+       sodipodi:cy="153.96931"
+       sodipodi:rx="3.75"
+       sodipodi:ry="4.6428571"
+       d="m 52.857143,153.96931 a 3.75,4.6428571 0 1 1 -7.5,0 3.75,4.6428571 0 1 1 7.5,0 z"
+       inkscape:export-filename="D:\UserMartin\Documents\Game Projects\viroBacterInvaders\Assets\Sprites\surfDef.png"
+       inkscape:export-xdpi="53.490002"
+       inkscape:export-ydpi="53.490002"
+       transform="matrix(1.4161414,0,0,1.4161414,-17.329319,-60.44664)" />
+    <path
+       sodipodi:type="arc"
+       style="fill:#0000ff;fill-opacity:1;fill-rule:nonzero;stroke:#e63d52;stroke-opacity:1"
+       id="path3031"
+       sodipodi:cx="49.285713"
+       sodipodi:cy="148.79076"
+       sodipodi:rx="2.8571429"
+       sodipodi:ry="3.0357144"
+       d="m 52.142856,148.79076 a 2.8571429,3.0357144 0 1 1 -5.714286,0 2.8571429,3.0357144 0 1 1 5.714286,0 z"
+       inkscape:export-filename="D:\UserMartin\Documents\Game Projects\viroBacterInvaders\Assets\Sprites\surfDef.png"
+       inkscape:export-xdpi="53.490002"
+       inkscape:export-ydpi="53.490002"
+       transform="matrix(1.4161414,0,0,1.4161414,-17.329319,-60.44664)" />
   </g>
 </svg>

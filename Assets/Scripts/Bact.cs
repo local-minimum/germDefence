@@ -2,8 +2,6 @@
 using System.Collections;
 
 public class Bact : Enemy {
-	
-	public int lives = 3;
 
 	public float baseSpeed = 1f;
 
@@ -116,10 +114,6 @@ public class Bact : Enemy {
 		} else if (other.tag == "Shot") {
 			Dna dna = other.gameObject.GetComponent<Dna>();
 			lives -= dna.Hit();
-			if (lives < 0) {
-				Destroy(gameObject);
-				return;
-			}
 
 		}
 	}

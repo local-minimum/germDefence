@@ -3,6 +3,9 @@ using System.Collections;
 
 public class Enemy : MonoBehaviour {
 
+	[SerializeField]
+	public int _lives = 3;
+
 	[Range(0, 1000)]
 	public int startValue = 1000;
 
@@ -12,6 +15,21 @@ public class Enemy : MonoBehaviour {
 	private float awakeTime;
 
 	protected Level levelCoordinator;
+
+	public int lives {
+		get {
+			return _lives;
+		}
+
+		set {
+			if (value > 0)
+				_lives = value;
+			else {
+				_lives = 0;
+				Death();
+			}
+		}
+	}
 
 	private int value {
 		get {
@@ -26,5 +44,9 @@ public class Enemy : MonoBehaviour {
 		awakeTime = levelCoordinator.playTime;
 	}
 
+	protected void Death() {
+		if (gameObject)
+			Destroy(gameObject);
+	}
 
 }
