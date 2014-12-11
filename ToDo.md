@@ -6,6 +6,8 @@ Features
  * Other kamikaze bacteria
  * speach bubbles letting player know purpose of things for first play through
  * make sure shots only can hit one thing
+ * Make sure antibody particles can't shine through ontop on water
+ 
 
 Graphics assets
 ===============
