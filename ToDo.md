@@ -2,8 +2,6 @@ Features
 ========
 
  * Level difficulty progression via nice inspector interfaces triggered by events such as timeplayed
- * Let bacteria leak more virus when damaged
- * Make virus deposition be time interval plus minus something
  * Crashing bacteria on surface
  * Not shooting landed virus with dna cannon
  * Other kamikaze bacteria
