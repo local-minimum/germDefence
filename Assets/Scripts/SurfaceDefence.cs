@@ -17,6 +17,7 @@ public class SurfaceDefence : MonoBehaviour {
 	private HashSet<Enemy> fighting = new HashSet<Enemy>();
 	private LineRenderer myBeam;
 	private WavyLineRenderer waveRenderer;
+	private Animator myAnimator;
 
 	static SurfaceDefence leftMost {
 		get {
@@ -36,6 +37,9 @@ public class SurfaceDefence : MonoBehaviour {
 		myBeam = gameObject.GetComponent<LineRenderer>();
 		waveRenderer = gameObject.GetComponent<WavyLineRenderer>();
 		waveRenderer.startWave = Vector3.up * rayVerticalOffset;
+		myAnimator = gameObject.GetComponentInParent<Animator>();
+		myAnimator.speed = Random.Range(0.9f, 1.1f);
+
 	}
 
 	void Update() {
@@ -91,11 +95,13 @@ public class SurfaceDefence : MonoBehaviour {
 
 	IEnumerator<WaitForSeconds> eatingEnemies(Enemy e) {
 		while (e.lives > 0) {
+			myAnimator.speed = Random.Range(3f, 7f);
 			yield return new WaitForSeconds(eatingOneLifeTime);
 			if (!fighting.Contains(e))
 				break;
 			e.lives--;
 		}
+		myAnimator.speed = Random.Range(0.9f, 1.1f);
 	}
 
 }
