@@ -4,6 +4,8 @@ using System.Linq;
 
 public class SurfaceDefence : MonoBehaviour {
 
+	static HashSet<SurfaceDefence> surfaceDefenders = new HashSet<SurfaceDefence>();
+
 	public LayerMask indicatorRayLayerHits;
 	public float speed = 1f;
 	public float eatingOneLifeTime = 1f;
@@ -14,21 +16,37 @@ public class SurfaceDefence : MonoBehaviour {
 	private float acceleration = 0f;
 	private HashSet<Enemy> fighting = new HashSet<Enemy>();
 
+	static SurfaceDefence leftMost {
+		get {
+			return surfaceDefenders.OrderBy(sd => sd.transform.position.x).First();
+		}
+	}
+
+	static SurfaceDefence rightMost {
+		get {
+			return surfaceDefenders.OrderByDescending(sd => sd.transform.position.x).First();
+		}
+	}
+
 	void Start() {
+		surfaceDefenders.Add(this);
 		myRB = gameObject.GetComponentInParent<Rigidbody2D>();
 	}
 
 	void Update() {
 		acceleration = (float) 2 * (Input.mousePosition.x - Screen.width / 2) / Screen.width;
-		DrawEnemyDetectionFeedback(
-			Physics2D.Raycast(
-				transform.position + Vector3.up * rayVerticalOffset, 
-				Vector2.right, rayDuration, indicatorRayLayerHits));
 
-		DrawEnemyDetectionFeedback(
-			Physics2D.Raycast(
-			transform.position + Vector3.up * rayVerticalOffset, 
-			Vector2.right * -1, rayDuration, indicatorRayLayerHits));
+		if (rightMost == this)
+			DrawEnemyDetectionFeedback(
+				Physics2D.Raycast(
+					transform.position + Vector3.up * rayVerticalOffset, 
+					Vector2.right, rayDuration, indicatorRayLayerHits));
+
+		if (leftMost == this)
+			DrawEnemyDetectionFeedback(
+				Physics2D.Raycast(
+				transform.position + Vector3.up * rayVerticalOffset, 
+				Vector2.right * -1, rayDuration, indicatorRayLayerHits));
 
 //		Debug.DrawRay(transform.position + Vector3.up * rayVerticalOffset, Vector3.right, Color.red, 10f);
 	}
@@ -41,8 +59,8 @@ public class SurfaceDefence : MonoBehaviour {
 	void DrawEnemyDetectionFeedback(RaycastHit2D hit) {
 		if (!hit)
 			return;
-		Debug.Log(hit.collider.name);
-		Debug.DrawLine(transform.position, hit.point);
+
+		Debug.DrawLine(transform.position, hit.point + Vector2.up * -rayVerticalOffset);
 	}
 
 	void OnTriggerEnter2D(Collider2D other) {
