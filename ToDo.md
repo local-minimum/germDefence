@@ -5,7 +5,6 @@ Features
  * Crashing bacteria on surface
  * Other kamikaze bacteria
  * speach bubbles letting player know purpose of things for first play through
- * Floating antibodies inside cell slightly reflecting current health. (Low prio)
 
 Graphics assets
 ===============
