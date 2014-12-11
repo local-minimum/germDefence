@@ -24,6 +24,22 @@ public class Level : MonoBehaviour {
 		Time.timeScale = 1f;
 		if (!mainCam)
 			mainCam = Camera.main;
+
+	}
+
+	private bool gameOver {
+		get {
+			return _gameOver;
+		}
+
+		set {
+			if (!value) {
+				Debug.LogError("Can't unset game over!");
+			} else {
+				lastPauseTime = Time.time;
+				_gameOver = value;
+			}
+		}
 	}
 
 	public bool paused {
@@ -33,8 +49,10 @@ public class Level : MonoBehaviour {
 		}
 
 		set {
-
-			if (value)
+			if (gameOver) {
+				Debug.LogWarning("Pausing when game is over is not pausing");
+				return;
+			} else if (value)
 				lastPauseTime = Time.time;
 			else
 				pausedTime += Time.time - lastPauseTime;
@@ -46,7 +64,10 @@ public class Level : MonoBehaviour {
 	public float playTime {
 
 		get {
-			return Time.timeSinceLevelLoad;
+			if (paused)
+				return lastPauseTime - pausedTime;
+			else 
+				return Time.timeSinceLevelLoad - pausedTime;
 		}
 	}
 
