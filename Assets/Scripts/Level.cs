@@ -4,6 +4,7 @@ using System.Collections.Generic;
 public class Level : MonoBehaviour {
 
 	public Bact bacteria;
+	public Camera mainCam;
 
 	public float betweenBactTime = 2f;
 	public float betweenBactTimeIrregularity = 0.3f;
@@ -18,6 +19,8 @@ public class Level : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		Time.timeScale = 1f;
+		if (!mainCam)
+			mainCam = Camera.main;
 	}
 
 	public bool paused {

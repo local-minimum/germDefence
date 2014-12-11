@@ -53,9 +53,16 @@ public class Vir : Enemy {
 	void OnCollisionEnter2D(Collision2D other) {
 		if (other.gameObject.tag == "Ground") {
 			rigidbody2D.velocity = Vector2.zero;
-			hurting = true;
-			Animator a = gameObject.GetComponent<Animator>();
-			a.SetBool("landed", true);
+			if (!hurting) {
+				hurting = true;
+				Animator a = gameObject.GetComponent<Animator>();
+				a.SetBool("landed", true);
+				iTween.PunchPosition(
+					levelCoordinator.mainCam.gameObject,
+				    iTween.Hash(
+						"amount", Vector3.down,
+						"time", 0.4f));
+			}
 		}
 	}
 
@@ -80,8 +87,5 @@ public class Vir : Enemy {
 		transform.position = screenPos;
 
 	}
-
-	public void UnderAttack() {
-
-	}
+	
 }
