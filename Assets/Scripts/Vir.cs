@@ -11,16 +11,23 @@ public class Vir : Enemy {
 	public uiMeter immunity;
 	public float damage = 2f;
 	private bool hurting = false;
-
+	private float isBeingHurtTime;
+	public float isBeingHurtDuration = 0.4f;
 
 	new void Start () {
 		lives = 1;
 		base.Start(); 
 		immunity = levelCoordinator.immunity;
+		isBeingHurtTime = -2 * isBeingHurtDuration;
 	}
 
 	// Update is called once per frame
 	void Update () {
+		bool isBeingHurt = levelCoordinator.playTime - isBeingHurtTime < isBeingHurtDuration;
+		if (!particleSystem.isPlaying && isBeingHurt)
+			particleSystem.Play();
+		else if (particleSystem.isPlaying && !isBeingHurt)
+			particleSystem.Stop();
 
 		if (hurting) {
 			immunity.Drain(damage * Time.deltaTime);
@@ -57,7 +64,8 @@ public class Vir : Enemy {
 			Dna dna = other.gameObject.GetComponent<Dna>();
 			dna.HitSmall();
 			Death();
-		}
+		} else if (other.tag == "SurfaceDefence")
+			isBeingHurtTime = levelCoordinator.playTime;
 	}
 
 	void OnBecameInvisible() {
@@ -73,4 +81,7 @@ public class Vir : Enemy {
 
 	}
 
+	public void UnderAttack() {
+
+	}
 }
