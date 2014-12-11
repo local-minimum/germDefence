@@ -30,6 +30,7 @@ GameObject:
   - 114: {fileID: 11400000}
   - 61: {fileID: 6100000}
   - 120: {fileID: 12000000}
+  - 114: {fileID: 11400002}
   m_Layer: 11
   m_Name: EnemyEater
   m_TagString: SurfaceDefence
@@ -128,6 +129,25 @@ MonoBehaviour:
   eatingOneLifeTime: 1
   rayVerticalOffset: .200000003
   rayDuration: 10
+--- !u!114 &11400002
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100002}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fed7dddf572bc96429f951b3d4b29e58, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  waveAxis: {x: 0, y: 1, z: 0}
+  amplitude: 1
+  scalingAmplitude: 0
+  frequency: 1
+  scalingFrequency: 0
+  _length: 30
+  startWave: {x: 0, y: 0, z: 0}
+  endWave: {x: 0, y: 0, z: 0}
 --- !u!120 &12000000
 LineRenderer:
   m_ObjectHideFlags: 1
@@ -153,7 +173,7 @@ LineRenderer:
   - {x: 2, y: 0, z: 0}
   m_Parameters:
     startWidth: .0500000007
-    endWidth: .150000006
+    endWidth: .0500000007
     m_StartColor:
       serializedVersion: 2
       rgba: 2483027967

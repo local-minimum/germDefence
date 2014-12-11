@@ -16,6 +16,7 @@ public class SurfaceDefence : MonoBehaviour {
 	private float acceleration = 0f;
 	private HashSet<Enemy> fighting = new HashSet<Enemy>();
 	private LineRenderer myBeam;
+	private WavyLineRenderer waveRenderer;
 
 	static SurfaceDefence leftMost {
 		get {
@@ -33,7 +34,8 @@ public class SurfaceDefence : MonoBehaviour {
 		surfaceDefenders.Add(this);
 		myRB = gameObject.GetComponentInParent<Rigidbody2D>();
 		myBeam = gameObject.GetComponent<LineRenderer>();
-		myBeam.SetPosition(0, Vector3.up * rayVerticalOffset);
+		waveRenderer = gameObject.GetComponent<WavyLineRenderer>();
+		waveRenderer.startWave = Vector3.up * rayVerticalOffset;
 	}
 
 	void Update() {
@@ -67,7 +69,8 @@ public class SurfaceDefence : MonoBehaviour {
 			myBeam.enabled = false;
 		} else {
 			myBeam.enabled = true;
-			myBeam.SetPosition(1, (Vector3) hit.point - transform.position + Vector3.up * -rayVerticalOffset);
+			waveRenderer.endWave = hit.collider.transform.position;
+			//(Vector3) hit.point - transform.position + Vector3.up * -rayVerticalOffset;
 		}
 	}
 
