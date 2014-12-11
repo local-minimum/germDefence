@@ -15,7 +15,7 @@ GameObject:
   - 95: {fileID: 9500000}
   m_Layer: 8
   m_Name: bact
-  m_TagString: Untagged
+  m_TagString: Bacteria
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -92,7 +92,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 25a3fabcb316f9a47bbb7fb9b90987fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lives: 0
+  _lives: 3
+  startValue: 1000
+  valueDecay: 100
   baseSpeed: .5
   speedIrregularity: 4.38000011
   speedIrregularityFreq: 1.73000002

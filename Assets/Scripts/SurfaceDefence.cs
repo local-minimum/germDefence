@@ -4,48 +4,45 @@ using System.Linq;
 
 public class SurfaceDefence : MonoBehaviour {
 
+	public LayerMask indicatorRayLayerHits;
 	public float speed = 1f;
 	public float eatingOneLifeTime = 1f;
 	private Rigidbody2D myRB;
+	public float rayVerticalOffset = 0.2f;
+	public float rayDuration = 2f;
 
+	private float acceleration = 0f;
 	private HashSet<Enemy> fighting = new HashSet<Enemy>();
-	/*
-	private Transform _target;
-
-
-	public float targetDistance {
-		get {
-			return (_target.position - transform.position).x;
-		}
-	}
-	                         
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
-
-	// Update is called once per frame
-	void Update () {
-		if (_target) {
-			if (targetDistance > 0.01f)
-				rigidbody2D.velocity = new Vector2(Mathf.Clamp(targetDistance, -1f, 1f), 1);
-
-		}
-	}
-
-	public void Attack(Transform other) {
-		_target = other;
-	}
-	*/
 
 	void Start() {
 		myRB = gameObject.GetComponentInParent<Rigidbody2D>();
 	}
 
 	void Update() {
-		float acceleration = (float) 2 * (Input.mousePosition.x - Screen.width / 2) / Screen.width;
-		myRB.AddForce(Vector2.right * speed * acceleration * Time.deltaTime + Vector2.up * Time.deltaTime);
+		acceleration = (float) 2 * (Input.mousePosition.x - Screen.width / 2) / Screen.width;
+		DrawEnemyDetectionFeedback(
+			Physics2D.Raycast(
+				transform.position + Vector3.up * rayVerticalOffset, 
+				Vector2.right, rayDuration, indicatorRayLayerHits));
+
+		DrawEnemyDetectionFeedback(
+			Physics2D.Raycast(
+			transform.position + Vector3.up * rayVerticalOffset, 
+			Vector2.right * -1, rayDuration, indicatorRayLayerHits));
+
+//		Debug.DrawRay(transform.position + Vector3.up * rayVerticalOffset, Vector3.right, Color.red, 10f);
+	}
+
+	void FixedUpdate() {
+		myRB.AddForce(Vector2.right * speed * acceleration  + Vector2.up);
+
+	}
+
+	void DrawEnemyDetectionFeedback(RaycastHit2D hit) {
+		if (!hit)
+			return;
+		Debug.Log(hit.collider.name);
+		Debug.DrawLine(transform.position, hit.point);
 	}
 
 	void OnTriggerEnter2D(Collider2D other) {

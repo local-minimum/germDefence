@@ -56,7 +56,7 @@ public class Vir : Enemy {
 		if (other.tag == "Shot") {
 			Dna dna = other.gameObject.GetComponent<Dna>();
 			dna.HitSmall();
-			Destroy(gameObject);
+			Death();
 		}
 	}
 

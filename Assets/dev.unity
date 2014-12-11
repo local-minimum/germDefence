@@ -295,8 +295,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85e76cb09dd645f4c9a160fe5a038724, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 500
+  indicatorRayLayerHits:
+    serializedVersion: 2
+    m_Bits: 256
+  speed: 20
   eatingOneLifeTime: 1
+  rayVerticalOffset: .200000003
+  rayDuration: 2
 --- !u!4 &351904341
 Transform:
   m_ObjectHideFlags: 0
@@ -900,8 +905,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85e76cb09dd645f4c9a160fe5a038724, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 750
+  indicatorRayLayerHits:
+    serializedVersion: 2
+    m_Bits: 256
+  speed: 10
   eatingOneLifeTime: 1
+  rayVerticalOffset: .200000003
+  rayDuration: 2
 --- !u!1001 &777730453
 Prefab:
   m_ObjectHideFlags: 0
@@ -1464,8 +1474,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85e76cb09dd645f4c9a160fe5a038724, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 1000
+  indicatorRayLayerHits:
+    serializedVersion: 2
+    m_Bits: 256
+  speed: 1
   eatingOneLifeTime: 1
+  rayVerticalOffset: .200000003
+  rayDuration: 2
 --- !u!1 &1899920306
 GameObject:
   m_ObjectHideFlags: 0

@@ -15,7 +15,7 @@ GameObject:
   - 95: {fileID: 9500000}
   m_Layer: 8
   m_Name: vir
-  m_TagString: Untagged
+  m_TagString: Virus
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -84,6 +84,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a502ef5f299da6749b30c7201b5f2f9d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _lives: 3
+  startValue: 1000
+  valueDecay: 100
   dropOffset: {x: .100000001, y: -.100000001, z: 0}
   immunity: {fileID: 0}
   damage: 2
