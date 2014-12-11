@@ -64,7 +64,7 @@ public class SurfaceDefence : MonoBehaviour {
 	}
 
 	void FixedUpdate() {
-		myRB.AddForce(Vector2.right * speed * acceleration  + Vector2.up);
+		myRB.AddForce(Vector2.right * speed * acceleration  - Vector2.up);
 
 	}
 
