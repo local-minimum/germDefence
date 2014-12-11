@@ -1751,6 +1751,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bacteria: {fileID: 11400000, guid: 30f02fab2e08a9b4894a85a758207b78, type: 2}
+  mainCam: {fileID: 0}
   betweenBactTime: 10
   betweenBactTimeIrregularity: .300000012
   nextBact: -1

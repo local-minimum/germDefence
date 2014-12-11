@@ -4,7 +4,7 @@ using System.Collections;
 public class Vir : Enemy {
 
 	public Vector3 dropOffset = Vector3.down;
-
+	public ParticleSystem injectionEffect;
 	private bool warping = false;
 	private float warpTime = 0f;
 
@@ -62,6 +62,7 @@ public class Vir : Enemy {
 				    iTween.Hash(
 						"amount", Vector3.down,
 						"time", 0.4f));
+				injectionEffect.Play();
 			}
 		}
 	}
