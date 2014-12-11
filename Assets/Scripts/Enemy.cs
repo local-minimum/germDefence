@@ -18,6 +18,10 @@ public class Enemy : MonoBehaviour {
 
 	protected Level levelCoordinator;
 
+	public float landingForce = 0.4f;
+	protected bool hurting = false;
+	public ParticleSystem injectionEffect;
+
 	public int lives {
 		get {
 			return _lives;
@@ -56,4 +60,21 @@ public class Enemy : MonoBehaviour {
 		}
 	}
 
+	void OnCollisionEnter2D(Collision2D other) {
+		if (other.gameObject.tag == "Ground") {
+			gameObject.layer = LayerMask.NameToLayer("GroundEnemies");
+			rigidbody2D.velocity = Vector2.zero;
+			if (!hurting) {
+				hurting = true;
+				Animator a = gameObject.GetComponent<Animator>();
+				a.SetBool("landed", true);
+				iTween.PunchPosition(
+					levelCoordinator.mainCam.gameObject,
+					iTween.Hash(
+					"amount", Vector3.down,
+					"time", landingForce));
+				injectionEffect.Play();
+			}
+		}
+	}
 }

@@ -119,8 +119,9 @@ MonoBehaviour:
   _lives: 3
   startValue: 400
   valueDecay: 10
-  dropOffset: {x: .100000001, y: -.100000001, z: 0}
+  landingForce: .400000006
   injectionEffect: {fileID: 19800002}
+  dropOffset: {x: .100000001, y: -.100000001, z: 0}
   immunity: {fileID: 0}
   damage: 2
   isBeingHurtDuration: .400000006

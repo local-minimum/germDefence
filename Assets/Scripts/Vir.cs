@@ -4,13 +4,11 @@ using System.Collections;
 public class Vir : Enemy {
 
 	public Vector3 dropOffset = Vector3.down;
-	public ParticleSystem injectionEffect;
 	private bool warping = false;
 	private float warpTime = 0f;
 
 	public uiMeter immunity;
 	public float damage = 2f;
-	private bool hurting = false;
 	private float isBeingHurtTime;
 	public float isBeingHurtDuration = 0.4f;
 
@@ -49,23 +47,7 @@ public class Vir : Enemy {
 		v.y = 0f;
 		rigidbody2D.velocity = v;
 	}
-
-	void OnCollisionEnter2D(Collision2D other) {
-		if (other.gameObject.tag == "Ground") {
-			rigidbody2D.velocity = Vector2.zero;
-			if (!hurting) {
-				hurting = true;
-				Animator a = gameObject.GetComponent<Animator>();
-				a.SetBool("landed", true);
-				iTween.PunchPosition(
-					levelCoordinator.mainCam.gameObject,
-				    iTween.Hash(
-						"amount", Vector3.down,
-						"time", 0.4f));
-				injectionEffect.Play();
-			}
-		}
-	}
+	
 
 	void OnTriggerEnter2D(Collider2D other) {
 		if (other.tag == "Shot") {
