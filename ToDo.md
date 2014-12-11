@@ -3,7 +3,6 @@ Features
 
  * Level difficulty progression via nice inspector interfaces triggered by events such as timeplayed
  * Crashing bacteria on surface
- * Not shooting landed virus with dna cannon
  * Other kamikaze bacteria
  * speach bubbles letting player know purpose of things for first play through
  * Floating antibodies inside cell slightly reflecting current health. (Low prio)
