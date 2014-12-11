@@ -72,7 +72,8 @@ public class SurfaceDefence : MonoBehaviour {
 		if (!hit) {
 			myBeam.enabled = false;
 		} else {
-			myBeam.enabled = true;
+			//TODO: understand what goes wrong with the sine wave
+//			myBeam.enabled = true;
 			waveRenderer.endWave = hit.collider.transform.position;
 			//(Vector3) hit.point - transform.position + Vector3.up * -rayVerticalOffset;
 		}
