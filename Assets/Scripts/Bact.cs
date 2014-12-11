@@ -20,6 +20,9 @@ public class Bact : Enemy {
 	[Range(0, 10)]
 	public float warpAltitudeLoss = 0.1f;
 
+	public GameObject hurt1;
+	public GameObject hurt2;
+
 	private float speedPerlinX = 0f;
 	private float speedPerlinY = 0f;
 
@@ -40,6 +43,8 @@ public class Bact : Enemy {
 
 	new public void Start() {
 		base.Start();
+		hurt1.SetActive(false);
+		hurt2.SetActive(false);
 	}
 
 	// Use this for initialization
@@ -114,7 +119,10 @@ public class Bact : Enemy {
 		} else if (other.tag == "Shot") {
 			Dna dna = other.gameObject.GetComponent<Dna>();
 			lives -= dna.Hit();
-
+			if (lives == 2)
+				hurt1.SetActive(true);
+			else if (lives == 1)
+				hurt2.SetActive(true);
 		}
 	}
 }
