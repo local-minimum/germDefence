@@ -15,6 +15,9 @@ public class Level : MonoBehaviour {
 	bool _paused = false;
 	private float pausedTime = 0f;
 	private float lastPauseTime = 0f;
+	int killScore = 0;
+	public float timeScoreBonus = 1.5f;
+	public UnityEngine.UI.Text scoreUI;
 
 	// Use this for initialization
 	void Start () {
@@ -59,11 +62,20 @@ public class Level : MonoBehaviour {
 			SpawnBact();
 	}
 
+	void OnGUI() {
+		scoreUI.text = (killScore + Mathf.RoundToInt(playTime * timeScoreBonus)).ToString("D8");
+	}
+
 	void SpawnBact() {
 		Bact b = (Bact) Instantiate(bacteria);
 		b.Prep();
 		b.StartAtBase();
 		nextBact = Time.timeSinceLevelLoad + betweenBactTime * (1f + betweenBactTimeIrregularity * Random.value);
+	}
+
+	public void ReportDeadEnemy(Enemy e) {
+		Debug.Log(string.Format("{0} worth {1}", e.name, e.value));
+		killScore += e.value;
 	}
 
 	void GameOver() {

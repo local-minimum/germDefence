@@ -152,7 +152,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _lives: 3
   startValue: 1000
-  valueDecay: 100
+  valueDecay: 40
   baseSpeed: .5
   speedIrregularity: 4.38000011
   speedIrregularityFreq: 1.73000002

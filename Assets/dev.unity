@@ -1802,6 +1802,8 @@ MonoBehaviour:
   betweenBactTimeIrregularity: .300000012
   nextBact: -1
   immunity: {fileID: 1899920307}
+  timeScoreBonus: 1.5
+  scoreUI: {fileID: 954162196}
 --- !u!61 &607888046
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2074,6 +2076,10 @@ Prefab:
       propertyPath: m_LocalScale.x
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: 9c79a79eb4910e6488e29afe1ff0286c, type: 2}
+      propertyPath: scoreUI
+      value: 
+      objectReference: {fileID: 954162196}
     m_RemovedComponents:
     - {fileID: 6100000, guid: 9c79a79eb4910e6488e29afe1ff0286c, type: 2}
     - {fileID: 6100002, guid: 9c79a79eb4910e6488e29afe1ff0286c, type: 2}

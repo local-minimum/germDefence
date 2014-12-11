@@ -33,7 +33,7 @@ public class Enemy : MonoBehaviour {
 		}
 	}
 
-	private int value {
+	public int value {
 		get {
 			int val = startValue - valueDecay * Mathf.RoundToInt(levelCoordinator.playTime - awakeTime);
 			return val >= 0 ? val : 0;
@@ -50,6 +50,7 @@ public class Enemy : MonoBehaviour {
 		if (killing)
 			return;
 		killing = true;
+		levelCoordinator.ReportDeadEnemy(this);
 		if (gameObject) {
 			Destroy(gameObject);
 		}

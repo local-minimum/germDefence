@@ -117,8 +117,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _lives: 3
-  startValue: 1000
-  valueDecay: 100
+  startValue: 400
+  valueDecay: 10
   dropOffset: {x: .100000001, y: -.100000001, z: 0}
   injectionEffect: {fileID: 19800002}
   immunity: {fileID: 0}
