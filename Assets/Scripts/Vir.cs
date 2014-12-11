@@ -52,8 +52,7 @@ public class Vir : Enemy {
 	void OnTriggerEnter2D(Collider2D other) {
 		if (other.tag == "Shot") {
 			Dna dna = other.gameObject.GetComponent<Dna>();
-			dna.HitSmall();
-			Death();
+			lives -= dna.HitSmall();
 		} else if (other.tag == "SurfaceDefence")
 			isBeingHurtTime = levelCoordinator.playTime;
 	}

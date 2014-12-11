@@ -8,6 +8,7 @@ public class Dna : MonoBehaviour {
 
 	bool notShot = true;
 	private bool loaded = true;
+	private int power = 1;
 
 	// Use this for initialization
 	void Start () {
@@ -32,11 +33,13 @@ public class Dna : MonoBehaviour {
 	}
 
 	public int Hit() {
+		if (!loaded)
+			return 0;
+
 		rigidbody2D.velocity = Vector3.zero;
 		loaded = false;
 		renderer.enabled = false;
 		particleSystem.Play();
-
-		return 1;
+		return power;
 	}
 }
