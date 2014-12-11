@@ -95,7 +95,7 @@ public class Level : MonoBehaviour {
 	}
 
 	public void ReportDeadEnemy(Enemy e) {
-		Debug.Log(string.Format("{0} worth {1}", e.name, e.value));
+//		Debug.Log(string.Format("{0} worth {1}", e.name, e.value));
 		killScore += e.value;
 	}
 
