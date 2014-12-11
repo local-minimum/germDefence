@@ -15,6 +15,7 @@ public class SurfaceDefence : MonoBehaviour {
 
 	private float acceleration = 0f;
 	private HashSet<Enemy> fighting = new HashSet<Enemy>();
+	private LineRenderer myBeam;
 
 	static SurfaceDefence leftMost {
 		get {
@@ -31,6 +32,8 @@ public class SurfaceDefence : MonoBehaviour {
 	void Start() {
 		surfaceDefenders.Add(this);
 		myRB = gameObject.GetComponentInParent<Rigidbody2D>();
+		myBeam = gameObject.GetComponent<LineRenderer>();
+		myBeam.SetPosition(0, Vector3.up * rayVerticalOffset);
 	}
 
 	void Update() {
@@ -42,12 +45,15 @@ public class SurfaceDefence : MonoBehaviour {
 					transform.position + Vector3.up * rayVerticalOffset, 
 					Vector2.right, rayDuration, indicatorRayLayerHits));
 
-		if (leftMost == this)
+		else if (leftMost == this)
 			DrawEnemyDetectionFeedback(
 				Physics2D.Raycast(
 				transform.position + Vector3.up * rayVerticalOffset, 
 				Vector2.right * -1, rayDuration, indicatorRayLayerHits));
 
+		else {
+			myBeam.enabled = false;
+		}
 //		Debug.DrawRay(transform.position + Vector3.up * rayVerticalOffset, Vector3.right, Color.red, 10f);
 	}
 
@@ -57,10 +63,12 @@ public class SurfaceDefence : MonoBehaviour {
 	}
 
 	void DrawEnemyDetectionFeedback(RaycastHit2D hit) {
-		if (!hit)
-			return;
-
-		Debug.DrawLine(transform.position, hit.point + Vector2.up * -rayVerticalOffset);
+		if (!hit) {
+			myBeam.enabled = false;
+		} else {
+			myBeam.enabled = true;
+			myBeam.SetPosition(1, (Vector3) hit.point - transform.position + Vector3.up * -rayVerticalOffset);
+		}
 	}
 
 	void OnTriggerEnter2D(Collider2D other) {
