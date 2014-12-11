@@ -20,6 +20,9 @@ public class Bact : Enemy {
 	[Range(0, 10)]
 	public float warpAltitudeLoss = 0.1f;
 
+	[Range(0, 2)]
+	public float leakFactor = 0.85f;
+
 	public GameObject hurt1;
 	public GameObject hurt2;
 
@@ -32,8 +35,13 @@ public class Bact : Enemy {
 	private Vector3 spawnPos;
 	private float warpIteration = 0f;
 
-	[Range(0, 1)]
-	public float bombP = 0.1f;
+	[Range(0, 10)]
+	public float bombF = 1f;
+
+	[Range(0, 10)]
+	public float bombFVar = 0.1f;
+
+	private float nextBomb = 0f;
 
 	public Vir bomb;
 
@@ -45,6 +53,7 @@ public class Bact : Enemy {
 		base.Start();
 		hurt1.SetActive(false);
 		hurt2.SetActive(false);
+		nextBomb = levelCoordinator.playTime + bombF + Random.Range(-bombFVar, bombFVar);
 	}
 
 	// Use this for initialization
@@ -78,7 +87,8 @@ public class Bact : Enemy {
 		transform.localPosition = new Vector3(transform.localPosition.x, 
 		                                      spawnPos.y - (warpIteration * warpAltitudeLoss) + altitudeIrregularity * Mathf.PerlinNoise(altitudePerlinX, altitudePerlinY), 
 		                                      transform.localPosition.z);
-		if (Random.value < bombP * Time.deltaTime)
+
+		if (nextBomb < levelCoordinator.playTime)
 			DropBomb();
 	}
 
@@ -106,6 +116,7 @@ public class Bact : Enemy {
 	void DropBomb() {
 		Vir b = (Vir) Instantiate(bomb);
 		b.Bomb(gameObject);
+		nextBomb = levelCoordinator.playTime + bombF + Random.Range(-bombFVar, bombFVar);
 	}
 
 	void SetBombTarget(Transform ground) {
@@ -123,6 +134,12 @@ public class Bact : Enemy {
 				hurt1.SetActive(true);
 			else if (lives == 1)
 				hurt2.SetActive(true);
+			else
+				return;
+
+			bombF *= leakFactor;
+			bombFVar *= leakFactor;
+
 		}
 	}
 }

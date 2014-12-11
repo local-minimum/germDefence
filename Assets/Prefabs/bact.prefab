@@ -159,9 +159,11 @@ MonoBehaviour:
   altitudeIrregularity: .611999989
   altitudeIrregularityFreq: .0500000007
   warpAltitudeLoss: 1.22000003
+  leakFactor: .850000024
   hurt1: {fileID: 100004}
   hurt2: {fileID: 100002}
-  bombP: .200000003
+  bombF: 4
+  bombFVar: 2
   bomb: {fileID: 11400000, guid: cadda261469e71f43ae2812d83fec774, type: 2}
 --- !u!212 &21200000
 SpriteRenderer:
