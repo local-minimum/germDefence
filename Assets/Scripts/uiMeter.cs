@@ -16,6 +16,12 @@ public class uiMeter : MonoBehaviour {
 
 	private UnityEngine.UI.Image im = null;
 
+	public float curPercent {
+		get {
+			return imgCurWidth;
+		}
+	}
+
 	public float curValue {
 		get {
 			return maxValue * imgCurWidth;

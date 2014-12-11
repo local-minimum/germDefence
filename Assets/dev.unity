@@ -1733,6 +1733,7 @@ GameObject:
   - 4: {fileID: 418276922}
   - 198: {fileID: 418276921}
   - 199: {fileID: 418276920}
+  - 114: {fileID: 418276923}
   m_Layer: 0
   m_Name: antibodyemitter
   m_TagString: Untagged
@@ -2826,6 +2827,21 @@ Transform:
   m_Children: []
   m_Father: {fileID: 319173067}
   m_RootOrder: 0
+--- !u!114 &418276923
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 418276919}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f010fe4aea78e9343888e3aa28d328c9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  noHealthRate: 0
+  fullHealthRate: 3
+  noHealthSpeed: .200000003
+  fullHealthSpeed: 1.20000005
 --- !u!1 &558058756
 GameObject:
   m_ObjectHideFlags: 0
@@ -3025,6 +3041,7 @@ MonoBehaviour:
   immunity: {fileID: 1899920307}
   timeScoreBonus: 1.5
   scoreUI: {fileID: 954162196}
+  energy: {fileID: 0}
 --- !u!61 &607888046
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -3305,6 +3322,10 @@ Prefab:
       propertyPath: m_SortingOrder
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: 9c79a79eb4910e6488e29afe1ff0286c, type: 2}
+      propertyPath: Energy
+      value: 
+      objectReference: {fileID: 1185692047}
     m_RemovedComponents:
     - {fileID: 6100000, guid: 9c79a79eb4910e6488e29afe1ff0286c, type: 2}
     - {fileID: 6100002, guid: 9c79a79eb4910e6488e29afe1ff0286c, type: 2}

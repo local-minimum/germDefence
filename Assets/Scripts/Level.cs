@@ -19,6 +19,8 @@ public class Level : MonoBehaviour {
 	public float timeScoreBonus = 1.5f;
 	public UnityEngine.UI.Text scoreUI;
 
+	public uiMeter energy;
+
 	// Use this for initialization
 	void Start () {
 		Time.timeScale = 1f;
