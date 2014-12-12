@@ -74,8 +74,8 @@ public abstract class Enemy : MonoBehaviour {
 			return;
 		killing = true;
 		levelCoordinator.ReportDeadEnemy(this);
-		if (gameObject) {
-			Destroy(gameObject);
+		if (myRB && myRB.gameObject) {
+			Destroy(myRB.gameObject);
 		}
 	}
 
@@ -104,9 +104,9 @@ public abstract class Enemy : MonoBehaviour {
 		warping = true;
 		warpTime = Time.timeSinceLevelLoad;
 		
-		Vector3 screenPos = transform.position;
+		Vector3 screenPos = myRB.transform.position;
 		screenPos.x *= -0.96f;
-		transform.position = screenPos;
+		myRB.transform.position = screenPos;
 		
 	}
 
