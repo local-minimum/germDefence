@@ -97,11 +97,10 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 88348834}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 6.33970022, z: 0}
+  m_LocalPosition: {x: .946590006, y: 6.33970022, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 232497812}
-  - {fileID: 513917387}
   m_Father: {fileID: 0}
   m_RootOrder: 10
 --- !u!50 &88348836
@@ -131,7 +130,7 @@ GameObject:
   - 95: {fileID: 232497810}
   - 58: {fileID: 232497813}
   - 114: {fileID: 232497814}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: amoeba
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -188,6 +187,7 @@ Transform:
   - {fileID: 1628697389}
   - {fileID: 803754395}
   - {fileID: 662242828}
+  - {fileID: 513917387}
   m_Father: {fileID: 88348835}
   m_RootOrder: 0
 --- !u!58 &232497813
@@ -3095,7 +3095,7 @@ ParticleSystem:
         m_PostInfinity: 2
       minMaxState: 0
     startSpeed:
-      scalar: .200000003
+      scalar: .100000001
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -3293,8 +3293,8 @@ ParticleSystem:
   ShapeModule:
     serializedVersion: 2
     enabled: 1
-    type: 4
-    radius: .0500000007
+    type: 2
+    radius: .230000004
     angle: 70
     length: 5
     boxX: 1
@@ -3307,7 +3307,7 @@ ParticleSystem:
     enabled: 1
     m_Type: 0
     rate:
-      scalar: 50
+      scalar: 100
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -4078,12 +4078,12 @@ Transform:
   m_PrefabParentObject: {fileID: 400002, guid: cadda261469e71f43ae2812d83fec774, type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 513917385}
-  m_LocalRotation: {x: .707106829, y: 0, z: 0, w: .707106829}
-  m_LocalPosition: {x: 2.96276212, y: -5.86822414, z: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: .141900003}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 88348835}
-  m_RootOrder: 1
+  m_Father: {fileID: 232497812}
+  m_RootOrder: 3
 --- !u!199 &513917388
 ParticleSystemRenderer:
   m_ObjectHideFlags: 0
