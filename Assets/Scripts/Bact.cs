@@ -23,9 +23,6 @@ public class Bact : Enemy {
 	[Range(0, 2)]
 	public float leakFactor = 0.85f;
 
-	public GameObject hurt1;
-	public GameObject hurt2;
-
 	private float speedPerlinX = 0f;
 	private float speedPerlinY = 0f;
 
@@ -51,8 +48,6 @@ public class Bact : Enemy {
 
 	new public void Start() {
 		base.Start();
-		hurt1.SetActive(false);
-		hurt2.SetActive(false);
 		nextBomb = levelCoordinator.playTime + bombF + Random.Range(-bombFVar, bombFVar);
 	}
 
@@ -83,7 +78,7 @@ public class Bact : Enemy {
 		if (warping && Time.timeSinceLevelLoad - warpTime > 0.5f)
 			warping = false;
 
-		rigidbody2D.velocity = baseSpeed * (1 + Mathf.PerlinNoise(speedPerlinX, speedPerlinY) * speedIrregularity) * Vector2.right;
+		myRB.velocity = baseSpeed * (1 + Mathf.PerlinNoise(speedPerlinX, speedPerlinY) * speedIrregularity) * Vector2.right;
 		transform.localPosition = new Vector3(transform.localPosition.x, 
 		                                      spawnPos.y - (warpIteration * warpAltitudeLoss) + altitudeIrregularity * Mathf.PerlinNoise(altitudePerlinX, altitudePerlinY), 
 		                                      transform.localPosition.z);
@@ -115,7 +110,7 @@ public class Bact : Enemy {
 
 	void DropBomb() {
 		Vir b = (Vir) Instantiate(bomb);
-		b.Bomb(gameObject);
+		b.Bomb((Enemy) this);
 		nextBomb = levelCoordinator.playTime + bombF + Random.Range(-bombFVar, bombFVar);
 	}
 
@@ -129,11 +124,12 @@ public class Bact : Enemy {
 			kamikazeMode = true;
 		} else if (other.tag == "Shot") {
 			Dna dna = other.gameObject.GetComponent<Dna>();
-			lives -= dna.Hit();
-			if (lives == 2)
-				hurt1.SetActive(true);
-			else if (lives == 1)
-				hurt2.SetActive(true);
+			int hit = dna.Hit();
+			if (hit == 0)
+				return;
+			lives -= hit;
+			if (lives  > 0)
+				hurtSprites[lives - 1].SetActive(true);
 			else
 				return;
 

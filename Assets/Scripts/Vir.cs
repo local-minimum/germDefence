@@ -13,8 +13,8 @@ public class Vir : Enemy {
 	public float isBeingHurtDuration = 0.4f;
 
 	new void Start () {
-		lives = 1;
 		base.Start(); 
+		lives = 1;
 		immunity = levelCoordinator.immunity;
 		isBeingHurtTime = -2 * isBeingHurtDuration;
 	}
@@ -40,12 +40,12 @@ public class Vir : Enemy {
 		dropOffset.x *= -1f;
 	}
 
-	public void Bomb(GameObject parent) {
+	public void Bomb(Enemy parent) {
 		transform.parent = parent.transform.parent;
 		transform.localPosition = parent.transform.localPosition + dropOffset;
-		Vector3 v = parent.rigidbody2D.velocity;
+		Vector3 v = parent.myRB.velocity;
 		v.y = 0f;
-		rigidbody2D.velocity = v;
+		myRB.velocity = v;
 	}
 	
 

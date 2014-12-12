@@ -21,6 +21,10 @@ public class Enemy : MonoBehaviour {
 	public float landingForce = 0.4f;
 	protected bool hurting = false;
 	public ParticleSystem injectionEffect;
+	public GameObject[] hurtSprites;
+
+	[HideInInspector]
+	public Rigidbody2D myRB;
 
 	public int lives {
 		get {
@@ -44,10 +48,17 @@ public class Enemy : MonoBehaviour {
 		}
 	}
 
+	protected void Awake() {
+		levelCoordinator = GameObject.FindObjectOfType<Level>();
+		myRB = gameObject.GetComponentInParent<Rigidbody2D>();
+	}
+
 	// Use this for initialization
 	protected void Start () {
-		levelCoordinator = GameObject.FindObjectOfType<Level>();
+
 		awakeTime = levelCoordinator.playTime;
+		foreach (GameObject go in hurtSprites)
+			go.SetActive(false);
 	}
 
 	protected void Death() {
@@ -63,7 +74,7 @@ public class Enemy : MonoBehaviour {
 	void OnCollisionEnter2D(Collision2D other) {
 		if (other.gameObject.tag == "Ground") {
 			gameObject.layer = LayerMask.NameToLayer("GroundEnemies");
-			rigidbody2D.velocity = Vector2.zero;
+			myRB.velocity = Vector2.zero;
 			if (!hurting) {
 				hurting = true;
 				Animator a = gameObject.GetComponent<Animator>();
