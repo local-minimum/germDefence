@@ -43,8 +43,6 @@ public class Bact : Enemy {
 	public Vir bomb;
 
 	private bool kamikazeMode = false;
-	private bool warping = false;
-	private float warpTime = 0f;
 
 	new public void Start() {
 		base.Start();
@@ -93,20 +91,13 @@ public class Bact : Enemy {
 		altitudePerlinY += altitudeIrregularityFreq;
 	}
 
-	void OnBecameInvisible() {
-		if (warping)
-			return;
+	new void OnBecameInvisible() {
 
-		if (kamikazeMode) {
-			warping = true;
-			warpTime = Time.timeSinceLevelLoad;
-			Vector3 screenPos = transform.position;
-			screenPos.x *= -0.96f;
-			transform.position = screenPos;
-		} else {
+		if (!warping && !kamikazeMode) 
 			warpIteration++;
-			transform.localPosition = spawnPos;
-		}
+
+		base.OnBecameInvisible();
+
 	}
 
 	void DropBomb() {

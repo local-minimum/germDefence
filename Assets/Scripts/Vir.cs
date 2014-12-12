@@ -4,8 +4,6 @@ using System.Collections;
 public class Vir : Enemy {
 
 	public Vector3 dropOffset = Vector3.down;
-	private bool warping = false;
-	private float warpTime = 0f;
 
 	private float isBeingHurtTime;
 	public float isBeingHurtDuration = 0.4f;
@@ -24,9 +22,6 @@ public class Vir : Enemy {
 			particleSystem.Play();
 		else if (particleSystem.isPlaying && !isBeingHurt)
 			particleSystem.Stop();
-
-		if (warping && Time.timeSinceLevelLoad - warpTime > 0.5f)
-			warping = false;
 	}
 
 	public void ParentFlightLeft() {
@@ -50,17 +45,4 @@ public class Vir : Enemy {
 			isBeingHurtTime = levelCoordinator.playTime;
 	}
 
-	void OnBecameInvisible() {
-		if (warping)
-			return;
-
-		warping = true;
-		warpTime = Time.timeSinceLevelLoad;
-
-		Vector3 screenPos = transform.position;
-		screenPos.x *= -0.96f;
-		transform.position = screenPos;
-
-	}
-	
 }

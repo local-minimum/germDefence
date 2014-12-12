@@ -26,6 +26,9 @@ public abstract class Enemy : MonoBehaviour {
 	public ParticleSystem injectionEffect;
 	public GameObject[] hurtSprites;
 
+	protected bool warping = false;
+	protected float warpTime = 0f;
+
 	[HideInInspector]
 	public Rigidbody2D myRB;
 
@@ -94,9 +97,24 @@ public abstract class Enemy : MonoBehaviour {
 		}
 	}
 
+	protected void OnBecameInvisible() {
+		if (warping)
+			return;
+		
+		warping = true;
+		warpTime = Time.timeSinceLevelLoad;
+		
+		Vector3 screenPos = transform.position;
+		screenPos.x *= -0.96f;
+		transform.position = screenPos;
+		
+	}
+
 	protected void Update() {
 		if (hurting) 
 			levelCoordinator.immunity.Drain(damage * Time.deltaTime);
 
+		if (warping && Time.timeSinceLevelLoad - warpTime > 0.5f)
+			warping = false;
 	}
 }
