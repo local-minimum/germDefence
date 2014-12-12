@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Enemy : MonoBehaviour {
+public abstract class Enemy : MonoBehaviour {
 
 	private bool killing = false;
 
@@ -14,6 +14,9 @@ public class Enemy : MonoBehaviour {
 	[Range(0, 100)]
 	public int valueDecay = 100;
 
+	[Range(0, 10)]
+	public float damage = 2f;
+
 	private float awakeTime;
 
 	protected Level levelCoordinator;
@@ -21,6 +24,13 @@ public class Enemy : MonoBehaviour {
 	public float landingForce = 0.4f;
 	protected bool hurting = false;
 	public ParticleSystem injectionEffect;
+	public GameObject[] hurtSprites;
+
+	protected bool warping = false;
+	protected float warpTime = 0f;
+
+	[HideInInspector]
+	public Rigidbody2D myRB;
 
 	public int lives {
 		get {
@@ -28,9 +38,11 @@ public class Enemy : MonoBehaviour {
 		}
 
 		set {
-			if (value > 0)
+			if (value > 0) {
 				_lives = value;
-			else {
+				for (int i=0; i<hurtSprites.Length; i++)
+					hurtSprites[i].SetActive(i >= value - 1);
+			} else {
 				_lives = 0;
 				Death();
 			}
@@ -44,10 +56,17 @@ public class Enemy : MonoBehaviour {
 		}
 	}
 
+	protected void Awake() {
+		levelCoordinator = GameObject.FindObjectOfType<Level>();
+		myRB = gameObject.GetComponentInParent<Rigidbody2D>();
+	}
+
 	// Use this for initialization
 	protected void Start () {
-		levelCoordinator = GameObject.FindObjectOfType<Level>();
+
 		awakeTime = levelCoordinator.playTime;
+		foreach (GameObject go in hurtSprites)
+			go.SetActive(false);
 	}
 
 	protected void Death() {
@@ -55,15 +74,15 @@ public class Enemy : MonoBehaviour {
 			return;
 		killing = true;
 		levelCoordinator.ReportDeadEnemy(this);
-		if (gameObject) {
-			Destroy(gameObject);
+		if (myRB && myRB.gameObject) {
+			Destroy(myRB.gameObject);
 		}
 	}
 
 	void OnCollisionEnter2D(Collision2D other) {
 		if (other.gameObject.tag == "Ground") {
 			gameObject.layer = LayerMask.NameToLayer("GroundEnemies");
-			rigidbody2D.velocity = Vector2.zero;
+			myRB.velocity = Vector2.zero;
 			if (!hurting) {
 				hurting = true;
 				Animator a = gameObject.GetComponent<Animator>();
@@ -76,5 +95,26 @@ public class Enemy : MonoBehaviour {
 				injectionEffect.Play();
 			}
 		}
+	}
+
+	protected void OnBecameInvisible() {
+		if (warping)
+			return;
+		
+		warping = true;
+		warpTime = Time.timeSinceLevelLoad;
+		
+		Vector3 screenPos = myRB.transform.position;
+		screenPos.x *= -0.96f;
+		myRB.transform.position = screenPos;
+		
+	}
+
+	protected void Update() {
+		if (hurting) 
+			levelCoordinator.immunity.Drain(damage * Time.deltaTime);
+
+		if (warping && Time.timeSinceLevelLoad - warpTime > 0.5f)
+			warping = false;
 	}
 }

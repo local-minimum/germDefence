@@ -5,7 +5,7 @@ AnimatorController:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: Bacteria
+  m_Name: amoeba
   serializedVersion: 2
   m_AnimatorParameters:
   - m_Name: landed
@@ -31,13 +31,13 @@ State:
   m_ObjectHideFlags: 3
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: BactFlying
+  m_Name: amoeba
   m_Speed: 1
   m_CycleOffset: 0
   m_Motions:
-  - {fileID: 7400000, guid: 1124d2fc382b444499d042eab749e7c4, type: 2}
+  - {fileID: 7400000, guid: 236b44f0205c22a43a78fa638f0d0638, type: 2}
   m_ParentStateMachine: {fileID: 110700000}
-  m_Position: {x: 60, y: 132, z: 0}
+  m_Position: {x: 72, y: 96, z: 0}
   m_IKOnFeet: 0
   m_Mirror: 0
   m_Tag: 

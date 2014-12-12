@@ -153,6 +153,11 @@ MonoBehaviour:
   _lives: 3
   startValue: 1000
   valueDecay: 40
+  landingForce: .400000006
+  injectionEffect: {fileID: 0}
+  hurtSprites:
+  - {fileID: 100002}
+  - {fileID: 100004}
   baseSpeed: .5
   speedIrregularity: 4.38000011
   speedIrregularityFreq: 1.73000002
@@ -160,8 +165,6 @@ MonoBehaviour:
   altitudeIrregularityFreq: .0500000007
   warpAltitudeLoss: 1.22000003
   leakFactor: .850000024
-  hurt1: {fileID: 100004}
-  hurt2: {fileID: 100002}
   bombF: 4
   bombFVar: 2
   bomb: {fileID: 11400000, guid: cadda261469e71f43ae2812d83fec774, type: 2}

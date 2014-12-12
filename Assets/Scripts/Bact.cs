@@ -23,9 +23,6 @@ public class Bact : Enemy {
 	[Range(0, 2)]
 	public float leakFactor = 0.85f;
 
-	public GameObject hurt1;
-	public GameObject hurt2;
-
 	private float speedPerlinX = 0f;
 	private float speedPerlinY = 0f;
 
@@ -46,13 +43,9 @@ public class Bact : Enemy {
 	public Vir bomb;
 
 	private bool kamikazeMode = false;
-	private bool warping = false;
-	private float warpTime = 0f;
 
 	new public void Start() {
 		base.Start();
-		hurt1.SetActive(false);
-		hurt2.SetActive(false);
 		nextBomb = levelCoordinator.playTime + bombF + Random.Range(-bombFVar, bombFVar);
 	}
 
@@ -79,11 +72,12 @@ public class Bact : Enemy {
 	}
 
 	// Update is called once per frame
-	void Update () {
+	new void Update () {
+		base.Update();
 		if (warping && Time.timeSinceLevelLoad - warpTime > 0.5f)
 			warping = false;
 
-		rigidbody2D.velocity = baseSpeed * (1 + Mathf.PerlinNoise(speedPerlinX, speedPerlinY) * speedIrregularity) * Vector2.right;
+		myRB.velocity = baseSpeed * (1 + Mathf.PerlinNoise(speedPerlinX, speedPerlinY) * speedIrregularity) * Vector2.right;
 		transform.localPosition = new Vector3(transform.localPosition.x, 
 		                                      spawnPos.y - (warpIteration * warpAltitudeLoss) + altitudeIrregularity * Mathf.PerlinNoise(altitudePerlinX, altitudePerlinY), 
 		                                      transform.localPosition.z);
@@ -97,25 +91,18 @@ public class Bact : Enemy {
 		altitudePerlinY += altitudeIrregularityFreq;
 	}
 
-	void OnBecameInvisible() {
-		if (warping)
-			return;
+	new void OnBecameInvisible() {
 
-		if (kamikazeMode) {
-			warping = true;
-			warpTime = Time.timeSinceLevelLoad;
-			Vector3 screenPos = transform.position;
-			screenPos.x *= -0.96f;
-			transform.position = screenPos;
-		} else {
+		if (!warping && !kamikazeMode) 
 			warpIteration++;
-			transform.localPosition = spawnPos;
-		}
+
+		base.OnBecameInvisible();
+
 	}
 
 	void DropBomb() {
 		Vir b = (Vir) Instantiate(bomb);
-		b.Bomb(gameObject);
+		b.Bomb((Enemy) this);
 		nextBomb = levelCoordinator.playTime + bombF + Random.Range(-bombFVar, bombFVar);
 	}
 
@@ -129,13 +116,10 @@ public class Bact : Enemy {
 			kamikazeMode = true;
 		} else if (other.tag == "Shot") {
 			Dna dna = other.gameObject.GetComponent<Dna>();
-			lives -= dna.Hit();
-			if (lives == 2)
-				hurt1.SetActive(true);
-			else if (lives == 1)
-				hurt2.SetActive(true);
-			else
+			int hit = dna.Hit();
+			if (hit == 0)
 				return;
+			lives -= hit;
 
 			bombF *= leakFactor;
 			bombFVar *= leakFactor;

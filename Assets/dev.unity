@@ -3072,7 +3072,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bacteria: {fileID: 11400000, guid: 30f02fab2e08a9b4894a85a758207b78, type: 2}
+  amoeba: {fileID: 100008, guid: af9be9f4c9cfa824ab0623fbde5b5daf, type: 2}
   mainCam: {fileID: 0}
+  amoebaProb: .0500000007
   betweenBactTime: 10
   betweenBactTimeIrregularity: .300000012
   nextBact: -1
@@ -3364,6 +3366,14 @@ Prefab:
       propertyPath: Energy
       value: 
       objectReference: {fileID: 1185692047}
+    - target: {fileID: 11400000, guid: 9c79a79eb4910e6488e29afe1ff0286c, type: 2}
+      propertyPath: amoeba
+      value: 
+      objectReference: {fileID: 100008, guid: af9be9f4c9cfa824ab0623fbde5b5daf, type: 2}
+    - target: {fileID: 11400000, guid: 9c79a79eb4910e6488e29afe1ff0286c, type: 2}
+      propertyPath: amoebaProb
+      value: .0500000007
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 6100000, guid: 9c79a79eb4910e6488e29afe1ff0286c, type: 2}
     - {fileID: 6100002, guid: 9c79a79eb4910e6488e29afe1ff0286c, type: 2}
@@ -3371,6 +3381,33 @@ Prefab:
   m_RootGameObject: {fileID: 607888041}
   m_IsPrefabParent: 0
   m_IsExploded: 1
+--- !u!1 &920315887
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 920315888}
+  m_Layer: 0
+  m_Name: amoebaLaunchPointA
+  m_TagString: AmoebaLaunchPoint
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &920315888
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 920315887}
+  m_LocalRotation: {x: 0, y: 0, z: .642787635, w: .766044497}
+  m_LocalPosition: {x: 4.99639988, y: 5.19999981, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 10
 --- !u!1 &954162194
 GameObject:
   m_ObjectHideFlags: 0
@@ -3622,6 +3659,33 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!1 &1059211249
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1059211250}
+  m_Layer: 0
+  m_Name: amoebaLaunchPointB
+  m_TagString: AmoebaLaunchPoint
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1059211250
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1059211249}
+  m_LocalRotation: {x: 0, y: 0, z: -.642787635, w: .766044497}
+  m_LocalPosition: {x: -4.99639988, y: 5.19999981, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 11
 --- !u!1001 &1147863154
 Prefab:
   m_ObjectHideFlags: 0
