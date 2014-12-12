@@ -12,12 +12,14 @@ public class SurfaceDefence : MonoBehaviour {
 	private Rigidbody2D myRB;
 	public float rayVerticalOffset = 0.2f;
 	public float rayDuration = 2f;
+	public float eatingSpeedLossF = 0.1f;
 
 	private float acceleration = 0f;
 	private HashSet<Enemy> fighting = new HashSet<Enemy>();
 	private LineRenderer myBeam;
 	private WavyLineRenderer waveRenderer;
 	private Animator myAnimator;
+	private bool notWantingToMove = false;
 
 	static SurfaceDefence leftMost {
 		get {
@@ -45,6 +47,7 @@ public class SurfaceDefence : MonoBehaviour {
 	void Update() {
 		acceleration = (float) 2 * (Input.mousePosition.x - Screen.width / 2) / Screen.width;
 
+		/*
 		if (rightMost == this)
 			DrawEnemyDetectionFeedback(
 				Physics2D.Raycast(
@@ -61,10 +64,14 @@ public class SurfaceDefence : MonoBehaviour {
 			myBeam.enabled = false;
 		}
 //		Debug.DrawRay(transform.position + Vector3.up * rayVerticalOffset, Vector3.right, Color.red, 10f);
+*/
 	}
 
 	void FixedUpdate() {
-		myRB.AddForce(Vector2.right * speed * acceleration  - Vector2.up);
+		if (notWantingToMove)
+			myRB.AddForce(Vector2.right * speed * acceleration * eatingSpeedLossF  - Vector2.up);
+		else
+			myRB.AddForce(Vector2.right * speed * acceleration  - Vector2.up);
 
 	}
 
@@ -85,6 +92,8 @@ public class SurfaceDefence : MonoBehaviour {
 		if (e) {
 			fighting.Add(e);
 			StartCoroutine(eatingEnemies(e));
+			Vector2 v = rigidbody2D.velocity;
+			rigidbody2D.velocity = v * eatingSpeedLossF;
 		}
 	}
 
@@ -92,9 +101,11 @@ public class SurfaceDefence : MonoBehaviour {
 		Enemy e = other.GetComponent<Enemy>();
 		if (e)
 			fighting.Remove(e);
+		notWantingToMove = fighting.Count() > 0 ? true : false;
 	}
 
 	IEnumerator<WaitForSeconds> eatingEnemies(Enemy e) {
+		notWantingToMove = true;
 		while (e.lives > 0) {
 			myAnimator.speed = Random.Range(3f, 7f);
 			yield return new WaitForSeconds(eatingOneLifeTime);

@@ -229,6 +229,10 @@ Prefab:
       propertyPath: m_SortingOrder
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: a7490bd67931df345b454169e396bbf8, type: 2}
+      propertyPath: indicatorRayLayerHits.m_Bits
+      value: 4096
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a7490bd67931df345b454169e396bbf8, type: 2}
   m_RootGameObject: {fileID: 238474331}
@@ -349,11 +353,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   indicatorRayLayerHits:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 4096
   speed: 12
   eatingOneLifeTime: 1
   rayVerticalOffset: .200000003
   rayDuration: 10
+  eatingSpeedLossF: .100000001
 --- !u!120 &351904340
 LineRenderer:
   m_ObjectHideFlags: 0
@@ -1656,6 +1661,7 @@ MonoBehaviour:
   eatingOneLifeTime: 1
   rayVerticalOffset: .200000003
   rayDuration: 10
+  eatingSpeedLossF: .100000001
 --- !u!4 &397727447
 Transform:
   m_ObjectHideFlags: 0
@@ -5035,6 +5041,7 @@ MonoBehaviour:
   eatingOneLifeTime: 1
   rayVerticalOffset: .200000003
   rayDuration: 10
+  eatingSpeedLossF: .100000001
 --- !u!4 &1677590848
 Transform:
   m_ObjectHideFlags: 0
