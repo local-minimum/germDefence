@@ -3,9 +3,9 @@ Features
 
  * Level difficulty progression via nice inspector interfaces triggered by events such as timeplayed
  * Crashing bacteria on surface
- * Other kamikaze bacteria
  * speach bubbles letting player know purpose of things for first play through
  * Make sure antibody particles can't shine through ontop on water
+ * Quiz about whats right and wrong with this game
  
 
 Graphics assets
