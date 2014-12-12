@@ -46,7 +46,7 @@ public class SurfaceDefence : MonoBehaviour {
 
 	void Update() {
 		acceleration = (float) 2 * (Input.mousePosition.x - Screen.width / 2) / Screen.width;
-
+//		notWantingToMove = fighting.Count() > 0 ? true : false;
 		/*
 		if (rightMost == this)
 			DrawEnemyDetectionFeedback(
@@ -92,8 +92,8 @@ public class SurfaceDefence : MonoBehaviour {
 		if (e) {
 			fighting.Add(e);
 			StartCoroutine(eatingEnemies(e));
-			Vector2 v = rigidbody2D.velocity;
-			rigidbody2D.velocity = v * eatingSpeedLossF;
+			Vector2 v = myRB.velocity;
+			myRB.velocity = v * eatingSpeedLossF;
 		}
 	}
 
@@ -101,7 +101,6 @@ public class SurfaceDefence : MonoBehaviour {
 		Enemy e = other.GetComponent<Enemy>();
 		if (e)
 			fighting.Remove(e);
-		notWantingToMove = fighting.Count() > 0 ? true : false;
 	}
 
 	IEnumerator<WaitForSeconds> eatingEnemies(Enemy e) {
@@ -113,6 +112,8 @@ public class SurfaceDefence : MonoBehaviour {
 				break;
 			e.lives--;
 		}
+		fighting.Remove(e);
+		notWantingToMove = false;
 		myAnimator.speed = Random.Range(0.9f, 1.1f);
 	}
 

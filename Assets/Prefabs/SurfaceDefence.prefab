@@ -13,7 +13,7 @@ GameObject:
   - 58: {fileID: 5800000}
   - 50: {fileID: 5000000}
   - 95: {fileID: 9500000}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: SurfaceDefence
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -140,11 +140,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   indicatorRayLayerHits:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 4096
   speed: 12
   eatingOneLifeTime: 1
   rayVerticalOffset: .200000003
   rayDuration: 10
+  eatingSpeedLossF: .100000001
 --- !u!114 &11400002
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -217,7 +218,7 @@ SpriteRenderer:
   m_LightProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
   m_SortingLayerID: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 2
   m_Sprite: {fileID: 21300002, guid: 8ee2f71908bb18242992a6b2da8764d5, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1001 &100100000
