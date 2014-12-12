@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Enemy : MonoBehaviour {
+public abstract class Enemy : MonoBehaviour {
 
 	private bool killing = false;
 
@@ -13,6 +13,9 @@ public class Enemy : MonoBehaviour {
 
 	[Range(0, 100)]
 	public int valueDecay = 100;
+
+	[Range(0, 10)]
+	public float damage = 2f;
 
 	private float awakeTime;
 
@@ -89,5 +92,11 @@ public class Enemy : MonoBehaviour {
 				injectionEffect.Play();
 			}
 		}
+	}
+
+	protected void Update() {
+		if (hurting) 
+			levelCoordinator.immunity.Drain(damage * Time.deltaTime);
+
 	}
 }

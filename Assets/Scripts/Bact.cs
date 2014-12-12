@@ -74,7 +74,8 @@ public class Bact : Enemy {
 	}
 
 	// Update is called once per frame
-	void Update () {
+	new void Update () {
+		base.Update();
 		if (warping && Time.timeSinceLevelLoad - warpTime > 0.5f)
 			warping = false;
 

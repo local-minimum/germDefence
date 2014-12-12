@@ -215,6 +215,7 @@ MonoBehaviour:
   _lives: 4
   startValue: 600
   valueDecay: 10
+  damage: 4
   landingForce: .5
   injectionEffect: {fileID: 513917386}
   hurtSprites:

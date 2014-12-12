@@ -7,30 +7,23 @@ public class Vir : Enemy {
 	private bool warping = false;
 	private float warpTime = 0f;
 
-	public uiMeter immunity;
-	public float damage = 2f;
 	private float isBeingHurtTime;
 	public float isBeingHurtDuration = 0.4f;
 
 	new void Start () {
 		base.Start(); 
 		lives = 1;
-		immunity = levelCoordinator.immunity;
 		isBeingHurtTime = -2 * isBeingHurtDuration;
 	}
 
 	// Update is called once per frame
-	void Update () {
+	new void Update () {
+		base.Update();
 		bool isBeingHurt = levelCoordinator.playTime - isBeingHurtTime < isBeingHurtDuration;
 		if (!particleSystem.isPlaying && isBeingHurt)
 			particleSystem.Play();
 		else if (particleSystem.isPlaying && !isBeingHurt)
 			particleSystem.Stop();
-
-		if (hurting) {
-			immunity.Drain(damage * Time.deltaTime);
-			return;
-		}
 
 		if (warping && Time.timeSinceLevelLoad - warpTime > 0.5f)
 			warping = false;
