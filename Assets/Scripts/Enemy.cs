@@ -32,9 +32,11 @@ public class Enemy : MonoBehaviour {
 		}
 
 		set {
-			if (value > 0)
+			if (value > 0) {
 				_lives = value;
-			else {
+				for (int i=0; i<hurtSprites.Length; i++)
+					hurtSprites[i].SetActive(i >= value - 1);
+			} else {
 				_lives = 0;
 				Death();
 			}

@@ -128,10 +128,6 @@ public class Bact : Enemy {
 			if (hit == 0)
 				return;
 			lives -= hit;
-			if (lives  > 0)
-				hurtSprites[lives - 1].SetActive(true);
-			else
-				return;
 
 			bombF *= leakFactor;
 			bombFVar *= leakFactor;
