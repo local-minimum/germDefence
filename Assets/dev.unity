@@ -5220,6 +5220,7 @@ GameObject:
   - 114: {fileID: 1686697511}
   - 114: {fileID: 1686697512}
   - 114: {fileID: 1686697513}
+  - 114: {fileID: 1686697514}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -5360,6 +5361,21 @@ MonoBehaviour:
   height: 0
   globalFogColor: {r: .242647052, g: .169705257, b: .0392517224, a: .615686297}
   fogShader: {fileID: 4800000, guid: 70d8568987ac0499f952b54c7c13e265, type: 3}
+--- !u!114 &1686697514
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1686697505}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 073167c87916d374f951929a9d0567ad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fileName: capture_{0}_{1}.jpg
+  leadingZeros: 3
+  recordKey: 114
+  fps: 14
 --- !u!1001 &1690407679
 Prefab:
   m_ObjectHideFlags: 0
