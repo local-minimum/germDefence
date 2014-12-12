@@ -4,7 +4,12 @@ using System.Collections.Generic;
 public class Level : MonoBehaviour {
 
 	public Bact bacteria;
+	public GameObject amoeba;
+
 	public Camera mainCam;
+
+	[Range(0, 1)]
+	public float amoebaProb = 0.1f;
 
 	public float betweenBactTime = 2f;
 	public float betweenBactTimeIrregularity = 0.3f;
@@ -83,6 +88,9 @@ public class Level : MonoBehaviour {
 
 		if (nextBact < Time.timeSinceLevelLoad)
 			SpawnBact();
+
+		if (Random.value / Time.deltaTime < amoebaProb)
+			SpawnAmoeba();
 	}
 
 	void OnGUI() {
@@ -94,6 +102,10 @@ public class Level : MonoBehaviour {
 		b.Prep();
 		b.StartAtBase();
 		nextBact = Time.timeSinceLevelLoad + betweenBactTime * (1f + betweenBactTimeIrregularity * Random.value);
+	}
+
+	void SpawnAmoeba() {
+		Instantiate(amoeba);
 	}
 
 	public void ReportDeadEnemy(Enemy e) {

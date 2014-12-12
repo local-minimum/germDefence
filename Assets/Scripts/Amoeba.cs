@@ -3,7 +3,7 @@ using System.Collections;
 
 public class Amoeba : Enemy {
 
-	public Transform[] launchPoints;
+	private GameObject[] launchPoints;
 
 	public float launchVelocityMin;
 	public float launchVelocityMax;
@@ -12,15 +12,16 @@ public class Amoeba : Enemy {
 	public float force = 200f;
 
 	public float forceLateralBounds = 0.8f;
-	public float forceTorque = 45f;
+//	public float forceTorque = 45f;
 
 	new void Start() {
 		base.Start();
+		launchPoints = GameObject.FindGameObjectsWithTag("AmoebaLaunchPoint");
 		Launch();
 	}
 
 	void Launch() {
-		Transform t = launchPoints[Random.Range(0, launchPoints.Length)];
+		Transform t = launchPoints[Random.Range(0, launchPoints.Length)].transform;
 		myRB.transform.position = t.position;
 		myRB.velocity = t.up * Random.Range(launchVelocityMin, launchVelocityMax);
 	}
@@ -38,7 +39,7 @@ public class Amoeba : Enemy {
 			 	Vector2.right * Random.Range(-forceLateralBounds, forceLateralBounds)).normalized * force, 
 				ForceMode2D.Impulse);
 
-			myRB.AddTorque(Random.Range(-forceTorque, forceTorque), ForceMode2D.Impulse);
+//			myRB.AddTorque(Random.Range(-forceTorque, forceTorque), ForceMode2D.Impulse);
 			/*More reasonable but not working physics
 			RaycastHit2D hit = Physics2D.Raycast(
 				other.transform.position, 
