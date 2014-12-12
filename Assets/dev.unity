@@ -228,6 +228,9 @@ MonoBehaviour:
   - {fileID: 1059211250}
   launchVelocityMin: 5
   launchVelocityMax: 10
+  force: 2
+  forceLateralBounds: .300000012
+  forceTorque: 0
 --- !u!1 &238474331
 GameObject:
   m_ObjectHideFlags: 0
