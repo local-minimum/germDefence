@@ -5,7 +5,11 @@ Features
  * Crashing bacteria on surface
  * speach bubbles letting player know purpose of things for first play through
  * Make sure antibody particles can't shine through ontop on water
- * Quiz about whats right and wrong with this game
+ * Quiz about whats right and wrong with this game, also part of pause screen
+  * Link out to wikipedia or youtube
+  * 
+ * Vaccine against virus
+ * Antibiotica to clear all germs
  
 
 Graphics assets
